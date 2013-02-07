@@ -1,0 +1,21 @@
+{
+  "name": "mLocker",
+  "description": "secure your phone",
+  "launch_path": "/mlocker.html",
+  "type": "certified",
+  "icons": {
+    "128": "/imgs/lock-114.png"
+  },
+  "developer": {
+    "name": "nando",
+    "url": "www.agiledevers.com"
+  },
+  "default_locale": "es",
+  "installs_allowed_from": [
+    "https://marketplace.firefox.com"
+  ],
+  "orientation": ["portrait"],
+  "permissions": {
+      "device-storage:pictures":{ "access": "readwrite" }
+  }
+}

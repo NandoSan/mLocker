@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html manifest="">
+<head>
+    <meta charset="utf-8">
+    <title>WhileLoop</title>
+    <meta name="description" content="mLocker-Secure your phone">
+    <meta name="author" content="FabioSanvido">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+
+    <!-- Lungo - Stylesheets -->
+    <link rel="stylesheet" href="components/style/lungo.css">
+    <link rel="stylesheet" href="components/style/lungo.icon.css">
+    <link rel="stylesheet" href="components/style/lungo.icon.brand.css">
+    <link rel="stylesheet" href="components/style/lungo.theme.default.css">
+    <link rel="stylesheet" href="components/style/app.css">
+</head>
+
+<body class="app">
+    <section id="main" data-transition="slide">
+        <header data-title="Galería">
+            <nav class="button">
+                <a class="left" href="#features" data-router="aside" data-icon="menu"></a>
+                <a class="right" href="#" data-icon="plus"></a>
+            </nav>
+        </header>
+
+        <!-- All my albums -->
+        <article id="gallery" class="indented scroll">
+<!--            <img class="shadow" src="imgs/plus.png">-->
+<!--
+            <img class="shadow" src="imgs/plus.png">
+            <img class="shadow" src="imgs/plus.png">
+-->
+        </article>
+        
+        <article id="sets">
+        </article>
+    </section>
+    
+    <section id="add" data-transition="cover">
+        <header data-title="Imagénes">
+            <nav class="button">
+                <a class="left"  href="back" data-router="section"><strong>Cerrar</strong></a>
+                <a class ="right" href="back" data-router="section"><strong>Añadir</strong></a>
+            </nav>
+        </header>
+        <article>
+            
+        </article>
+    </section>
+
+    <aside id="features">
+        <header data-title="mLocker">
+            <nav class="right">
+                <a href="#" class="buttons" data-icon="settings"></a>
+            </nav>
+        </header>
+        <article class="list">
+            <ul>
+                <li class="current">
+                    <a href="#gallery" data-router="article" data-title="Galeria">
+                        <strong>Imagénes</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#sets" data-router="article" data-title="Ajustes">
+                        <strong>Ajustes</strong>
+                    </a>
+                </li>
+            </ul>
+        </article>
+    </aside>
+    <!-- Lungo - Dependencies -->
+    <script src="components/script/quo.js"></script>
+    <script src="components/script/lungo.js"></script>
+    <!-- Lungo - Sandbox App -->
+    <script src="components/script/sjcl.js"></script>
+    <script src="components/script/FOS.js"></script>
+    <script src="components/script/app.js"></script>
+</body>
+</html>    
