@@ -17,20 +17,45 @@
     <link rel="stylesheet" href="components/style/lungo.icon.css">
     <link rel="stylesheet" href="components/style/lungo.icon.brand.css">
     <link rel="stylesheet" href="components/style/lungo.theme.default.css">
+    <!--<link rel="stylesheet" href="components/style/theme.lungo.css">   <!-- for 2.1 version -->
     <link rel="stylesheet" href="components/style/app.css">
 </head>
 
 <body class="app">
+    <section id="login" data-transition="slide">
+        <article id="log" class="indented splash">
+            <h1><strong>mLocker</strong></h1>
+            <h6><strong>your</strong> secure place<br/>in <strong>your</strong> phone</h6>
+            <form>
+                <input type="text" placeholder="username" value="">
+                <input type="password" placeholder="password" value="">
+                <a id="in" href="#" class="button big" data-icon="user" data-label="Login"></a>
+                <a id="newuser" href="#newpass" data-router="article" class="button big" data-icon="user" data-label="Es mi primera vez.."></a>
+            </form>
+        </article>
+        <article id="newpass" class="indented spash">
+            <h1>Selecciona tu nombre de usuario y contraseña.</h1>
+            <p>En ningun momento mLocker enviarán estos datos a un servidor o los guardará, elige con quidado.</p>
+            <form>
+                <input type="text" placeholder="username" value="">
+                <input type="password" placeholder="password" value="">
+                <input type="password" placeholder="confirm password" value="">
+                <a id="new" href="#" class="button big" data-icon="right" data-label="Ok"></a>
+            </form>
+        </article>
+    </section>
+
     <section id="main" data-transition="slide">
         <header data-title="Galería">
-            <nav class="button">
+            <nav>
                 <a class="left" href="#features" data-router="aside" data-icon="menu"></a>
                 <a class="right" href="#" data-icon="plus"></a>
+                <a class="right" href="#" data-icon="lock" ></a>
             </nav>
         </header>
 
         <!-- All my albums -->
-        <article id="gallery" class="indented scroll">
+        <article id="gallery" class="indented scroll active">
 <!--            <img class="shadow" src="imgs/plus.png">-->
 <!--
             <img class="shadow" src="imgs/plus.png">
@@ -38,25 +63,26 @@
 -->
         </article>
         
-        <article id="sets">
+        <article id="sets" class="list indente scroll">
+            <ul>
+                <li><strong>WhiteLoop account</strong><span class="right" data-label="logOut"></span><small>admin</small></li>
+                <li><strong>FaceBook account</strong><small>admin</small></li>
+                <li><strong>Add new album</strong><small>admin</small></li>
+                <li><a id="change" href="#" class="button big" data-label="Cambiar contraseña/usuario"></a></li>
+            </ul>
+        </article>
+        
+        <article id="info">
+            <h1>
+                INFO ABOUT MLOCKER AND QTAG
+            </h1>
         </article>
     </section>
     
-    <section id="add" data-transition="cover">
-        <header data-title="Imagénes">
-            <nav class="button">
-                <a class="left"  href="back" data-router="section"><strong>Cerrar</strong></a>
-                <a class ="right" href="back" data-router="section"><strong>Añadir</strong></a>
-            </nav>
-        </header>
-        <article>
-            
-        </article>
-    </section>
 
     <aside id="features">
         <header data-title="mLocker">
-            <nav class="right">
+            <nav>
                 <a href="#" class="buttons" data-icon="settings"></a>
             </nav>
         </header>
@@ -65,11 +91,19 @@
                 <li class="current">
                     <a href="#gallery" data-router="article" data-title="Galeria">
                         <strong>Imagénes</strong>
+                        <span class="right" data-icon="grid"></span>
                     </a>
                 </li>
                 <li>
                     <a href="#sets" data-router="article" data-title="Ajustes">
                         <strong>Ajustes</strong>
+                        <span class="right" data-icon="settings"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#info" data-router="article" data-title="Info">
+                        <strong>Info</strong>
+                        <span class="right" data-icon="help"></span>
                     </a>
                 </li>
             </ul>
