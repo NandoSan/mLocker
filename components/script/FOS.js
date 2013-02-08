@@ -33,6 +33,16 @@ function emptyDB(){
     };
 }
 
+function deletefromDB(key){
+    var transaction = db.transaction(["files"], "readwrite");
+    transaction.onerror = function(event){console.log('Delete Transaction Error');};
+    transaction.oncomplete = function(event){console.log('Delete Transaction Completed');};
+    var req = transaction.objectStore("files").delete(key/1);
+    req.onerror = function(event){console.log('ERROR deleting form DB');};
+    req.onsuccess = function(event){console.log('SUCCESS deleting from de DB');};
+                                  
+}
+
 function getNewImg() {
     var a = new MozActivity({ name: "pick", data: {type: ["image/jpeg", "image/png"]} });
     a.onerror = function (event) { console.log('ERROR on picking a photo'); };
@@ -51,9 +61,15 @@ function getNewImg() {
         
         fReader.onload = function (event){
             console.log('');
-            $$('article#gallery').append('<img class="shadow" src="' + event.target.result + '">');
+            var newId = $$('article#gallery img:last-child').attr('id');
+            console.log('\nnewId = '+newId);
+            newId = newId.slice(6, newId.length);
+            console.log('\nnewId = '+newId);
+            newId++;
+            console.log('\nnewId = '+newId);
+            $$('article#gallery').append('<img id="image-' + newId + '"class="shadow" src="' + event.target.result + '">');
             $$('article#gallery img:last-child').on('doubleTap', fullScreen);
-            console.log('');
+            console.log('\nINDICE LAST ELEMENT --> ' + $$('article#gallery img:last-child').attr('id'));
             if (window.db === undefined){
                 openDB(event.target.result, storeNew);
             }
@@ -95,31 +111,33 @@ function loadDBImages()
     };
     imgsReq.onsuccess = function(event)
         {
-           var cursor = event.target.result;
+            Lungo.Element.loading('#load',0);
+            var cursor = event.target.result;
             if (cursor) {
                 console.log("key for cursor " + cursor.key);
                 
+                Lungo.Element.loading('#load',1);
+                var fReader = new FileReader();
+                fReader.newId=cursor.key;
                 
-                var fReader = new FileReader();       
                 fReader.readAsBinaryString(cursor.value);
                 fReader.onerror = function(event){console.log('ERROR loading a file');};
 //                fReader.onloadstart = function(event){console.log('START TO load a file');};
 //                fReader.onprogress = function(event){console.log('LOADING a file');};
-                fReader.onloadend = function(event){console.log('LOAD END EVENT..');};
+                fReader.onloadend = function(event){console.log('LOAD END EVENT..');Lungo.Element.loading('#load',0);};
                 
                 fReader.onload = function (event){
-                    console.log('LOAD event')
                     var src='data:application/octet-stream;base64,';
 //                    $$('article#gallery').append('<img id="image-' + cursor.key + '" class="shadow" src="' + src.concat(sjcl.decrypt(window.key, event.target.result)) + '">');
-                    $$('article#gallery').append('<img id="image-' + cursor.key + '" class="shadow" src="' + src.concat(sjcl.decrypt(localStorage.getItem('fundationKey'), event.target.result)) + '">');
+                    $$('article#gallery').append('<img id="image-' + event.target.newId + '" class="shadow" src="' + src.concat(sjcl.decrypt(localStorage.getItem('fundationKey'), event.target.result)) + '">');
                     $$('article#gallery img:last-child').on('doubleTap', fullScreen);
+                    
                 }
                 cursor.continue();
                 
             } else {                
                 console.log("No more entries!");
-                
-                Lungo.Element.loading('#load',0);
+//                Lungo.Element.loading('#load',0);
             } 
         }
 }

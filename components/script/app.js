@@ -128,6 +128,13 @@ Lungo.Events.init({
         
         Lungo.Router.section('main');
         loadImgs();
+    },
+    'tap article#gallery a#delete':function(event){
+        $$('article#gallery img.selected').each(deleteSelected);
+    },
+    'tap article#gallery a#share':function(event){
+        console.log('\nSHARE');
+        $$('article#gallery img.selected').each(deleteSelected);
     }
 });
     
@@ -135,3 +142,17 @@ function fullScreen(event){
     console.log('DOUBLE TAP FOR FULL SCREEN');
     
 }
+            
+function deleteSelected(index, element){
+    console.log('Element id --> ' + element.id);
+    var del = element.id.slice(6, element.id.lenght);
+    console.log('Whant delete: ' + del);
+    deletefromDB(del);
+    $$('#'+element.id).remove();
+    
+}
+                  
+                  
+                  
+                  
+                  
