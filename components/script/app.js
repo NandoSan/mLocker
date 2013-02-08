@@ -127,6 +127,7 @@ Lungo.Events.init({
         localStorage.setItem('fundationKey', digest_sha256);
         
         Lungo.Router.section('main');
+        $$('article#gallery .button').hide();
         loadImgs();
     },
     'tap article#gallery a#delete':function(event){
@@ -137,8 +138,6 @@ Lungo.Events.init({
         var selected = $$('article#gallery img.selected').length;
         console.log('number of selected -->' + selected);
         Lungo.Router.section('send');
-//        shareImgs();
-//        $$('article#gallery img.selected').each(deleteSelected);
     },
     'tap section#send a.notif':function(event){
            Lungo.Notification.html('<h1>Lo sentimos</h1><p>El equipo de mLocker lamenta mucho no poder \

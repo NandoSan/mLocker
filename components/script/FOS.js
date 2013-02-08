@@ -1,6 +1,6 @@
 function openDB(data, callback){
     console.log('Going to open a IndexedDB database');
-    var idbreq = indexedDB.open("com-agiledever-bablabl-20", 1);
+    var idbreq = indexedDB.open("com-agiledever-mlockerDB", 1);
     idbreq.onerror = function(){console.log('ERROR opening the database');};//general_idb_error_handler;
     idbreq.onupgradeneeded = function(event) {
         console.log('IDB ugrade needed!!');
@@ -24,10 +24,10 @@ function emptyDB(){
     req.onerror = function(event){console.log('ERROR clearing the objectStore');};
     req.onsuccess = function(event){
         Lungo.Notification.success(
-            "OK",                  //Title
-            "Eliminados todos los datos",     //Description
-            "check",                    //Icon
-            3                          //Time on screen
+            "OK",                  
+            "Eliminados todos los datos",
+            "check",   
+            3      
         );
                     
     };
@@ -85,8 +85,6 @@ function storeNew(img)
 {    
     var idx = img.indexOf('base64');
     img=img.slice(idx+7, img.lenght);
-    
-//    var store = new Blob([sjcl.encrypt(window.key, img)]);
     var store = new Blob([sjcl.encrypt(localStorage.getItem('fundationKey'), img)]);
     
     var transaction = db.transaction(["files"], "readwrite");
@@ -122,13 +120,10 @@ function loadDBImages()
                 
                 fReader.readAsBinaryString(cursor.value);
                 fReader.onerror = function(event){console.log('ERROR loading a file');};
-//                fReader.onloadstart = function(event){console.log('START TO load a file');};
-//                fReader.onprogress = function(event){console.log('LOADING a file');};
                 fReader.onloadend = function(event){console.log('LOAD END EVENT..');Lungo.Element.loading('#load',0);};
                 
                 fReader.onload = function (event){
                     var src='data:application/octet-stream;base64,';
-//                    $$('article#gallery').append('<img id="image-' + cursor.key + '" class="shadow" src="' + src.concat(sjcl.decrypt(window.key, event.target.result)) + '">');
                     $$('article#gallery').append('<img id="image-' + event.target.newId + '" class="shadow" src="' + src.concat(sjcl.decrypt(localStorage.getItem('fundationKey'), event.target.result)) + '">');
                     $$('article#gallery img:last-child').on('doubleTap', fullScreen);
                     
@@ -137,7 +132,6 @@ function loadDBImages()
                 
             } else {                
                 console.log("No more entries!");
-//                Lungo.Element.loading('#load',0);
             } 
         }
 }

@@ -1,0 +1,4 @@
+name": "mLocker",
+  "package_path": "http://<server-ip>/package.zip",
+  "version": "1.0"
+}
