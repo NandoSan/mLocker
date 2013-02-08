@@ -146,3 +146,21 @@ function loadImgs(){
     console.log('loading images...');
     if(window.db === undefined){openDB(null, loadDBImages);}else{loadDBImages();}
 }
+
+function shareImgs(idx){
+    
+    var a = new MozActivity({ name: "share", data:{body:"blabla", attach:""}});
+    a.onerror = function (event) { console.log('ERROR on picking a photo'); };
+    a.onsuccess = function (event) { console.log('SUCCESS on picking a photo'); };
+    
+    var a = new MozActivity({
+    name: 'share',
+    data: {
+      type: 'image/*',
+      number: 1,
+      blobs: blob,
+      filenames: 'mLocker-sent',
+      filepaths: ''
+    }
+  });
+}

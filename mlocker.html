@@ -72,23 +72,60 @@
 -->
         </article>
         
-        <article id="sets" class="list indente scroll">
+        <article id="sets" class="list indented scroll">
             <ul>
-                <li><strong>WhiteLoop account</strong><span class="right" data-label="logOut"></span><small>admin</small></li>
-                <li><strong>FaceBook account</strong><small>admin</small></li>
-                <li><strong>Add new album</strong><small>admin</small></li>
-                <li><a id="change" href="#" class="button big" data-label="Cambiar contraseña/usuario"></a></li>
+                <li>
+                    <a id="change" href="#" class="button big" data-label="Cambiar contraseña/usuario"></a>
+                    <p style="text-align:justify;text-justify:inter-word;">Con esta operación se borrará el usuario actual, junto con toda la información almacena hasta el momento.</p>
+                </li>
             </ul>
         </article>
         
-        <article id="info">
-            <h1>
-                INFO ABOUT MLOCKER AND QTAG
-            </h1>
+        <article id="info" class="scroll" style="background-color:rgb(34, 32, 32);">
+            <img src="imgs/logo.png" style="width:100%;">
+            <div style="padding:5%;text-align:justify;text-justify:inter-word;color:#ffffff">
+                <h1>
+                Esta aplicación ha sido desarrollada especificamente para el uso en conjunto con <strong><a href="http://www.qtag.me">QTag</a></strong>  
+                con el objetivo de proporcionar cierto nivel de seguridad
+                para los datos sensibles presentes en los dispositivos móviles.
+                </h1>
+                <br/>
+                <h2>
+                    Los ficheros compartido bajo la modalidad <strong>"Envio Seguro"</strong> serán cifrados antes de ser enviados,
+                    de este modo sólo el destinatario real (el que conoce la contraseña compartida) podrá visualizar el fichero.            
+                </h2>
+                <br/>
+                <h2>
+                    Todos los ficheros se almacenan de forma cifrada en el dipositivo (algoritmo AES128). De este modo, 
+                    aunque el dispositivo cayga en mano ajenas no será posible extraer los datos sin la contraseña establecida.
+                </h2>
+                <br/>
+                <h3>
+                    Para mayor información, pede contactarnos a:<br/>
+                    administrador@agiledevers.com<br/>
+                    o visite la pagína <a href="http://www.agiledevers.com">www.agiledevers.com</a>
+                </h3>
+            </div>
+            
         </article>
         
         <article id="options" style>
         
+        </article>
+    </section>
+    
+    <section id="send" style="margin-top:35%;" data-transition="cover">
+        <article class="list" style="border-style:solid; border-top-width:40px;background-color:rgb(34, 32, 32);border-color:rgb(34, 32, 32);">
+            <ul>
+                <li>
+                    <a href="#" class="button big notif" data-label="Envío seguro" data-icon="lock"></a>
+                    <p>Envía las imagenes cifradas de forma que sólo el destinatario pueda abrirlas.
+                        Requiere seleciónar una contraseña compartida.</p>
+                    <small><p class="right tag">Powered by <a href="http://www.qtag.me">QTag</a></p></small>
+                </li>
+                <li><a href="#" class="button big notif" data-label="Envío no protegído" data-icon="share"></a></li>
+                <li><a href="#back" data-router="section" class="button big" data-label="No enviar" data-icon="cancel"></a></li>
+            </ul>
         </article>
     </section>
     

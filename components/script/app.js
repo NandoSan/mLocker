@@ -134,7 +134,16 @@ Lungo.Events.init({
     },
     'tap article#gallery a#share':function(event){
         console.log('\nSHARE');
-        $$('article#gallery img.selected').each(deleteSelected);
+        var selected = $$('article#gallery img.selected').length;
+        console.log('number of selected -->' + selected);
+        Lungo.Router.section('send');
+//        shareImgs();
+//        $$('article#gallery img.selected').each(deleteSelected);
+    },
+    'tap section#send a.notif':function(event){
+           Lungo.Notification.html('<h1>Lo sentimos</h1><p>El equipo de mLocker lamenta mucho no poder \
+ofrecer esta funcionalidad en esta versión de la aplicación. No se preocupe, estará disponible con la mayor \
+brevedad posible.</p><p>Para sugerencias puede contactar con nostros desde la sección de información.</p>', "Close");
     }
 });
     
