@@ -2,7 +2,7 @@
 <html manifest="">
 <head>
     <meta charset="utf-8">
-    <title>WhileLoop</title>
+    <title>mLocker</title>
     <meta name="description" content="mLocker-Secure your phone">
     <meta name="author" content="FabioSanvido">
     <meta name="HandheldFriendly" content="True">
@@ -25,7 +25,7 @@
     <section id="login" data-transition="slide">
         <article id="log" class="indented splash">
             <h1><strong>mLocker</strong></h1>
-            <h6><strong>your</strong> secure place<br/>in <strong>your</strong> phone</h6>
+            <p><strong>your</strong> secure place<br/>in <strong>your</strong> phone</p>
             <form>
                 <input type="text" placeholder="username" value="">
                 <input type="password" placeholder="password" value="">
@@ -46,17 +46,26 @@
     </section>
 
     <section id="main" data-transition="slide">
-        <header data-title="Galería">
+        <header data-title="Galería" class="extended" class="disabled">
             <nav>
                 <a class="left" href="#features" data-router="aside" data-icon="menu"></a>
                 <a class="right" href="#" data-icon="plus"></a>
                 <a class="right" href="#" data-icon="lock" ></a>
             </nav>
         </header>
-
+        
+<!--        <footer>-->
+        <nav class="groupbar">
+<!--        <nav>-->
+            <a id="gal" href="#gallery" style="width:49%; display:inline-block;" data-label="Gallery" class="current" data-icon="grid"></a>
+            <a id="edit" href="#gallery" style="width:49%; display:inline-block;" data-label="Edit" data-count="0" data-icon="pencil"></a>       
+        </nav>
+<!--            </footer>-->
         <!-- All my albums -->
-        <article id="gallery" class="indented scroll active">
-<!--            <img class="shadow" src="imgs/plus.png">-->
+        <article id="gallery" class="indented scroll">
+            <div id="load"></div>
+            <a href="#" class="button blue" style="width:37%; display:inline-block;" data-label="Borrar" data-icon="remove"></a>
+            <a href="#" class="button blue" style="width:37%; display:inline-block;" data-label="Compartir" data-icon="share"></a>
 <!--
             <img class="shadow" src="imgs/plus.png">
             <img class="shadow" src="imgs/plus.png">
@@ -77,6 +86,10 @@
                 INFO ABOUT MLOCKER AND QTAG
             </h1>
         </article>
+        
+        <article id="options" style>
+        
+        </article>
     </section>
     
 
@@ -94,6 +107,7 @@
                         <span class="right" data-icon="grid"></span>
                     </a>
                 </li>
+                <li class="anchor"></li>
                 <li>
                     <a href="#sets" data-router="article" data-title="Ajustes">
                         <strong>Ajustes</strong>

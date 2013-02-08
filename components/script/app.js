@@ -11,7 +11,7 @@ Lungo.ready(function() {
     }
     
 });
-
+                
 Lungo.Events.init({
     'tap section#main header nav a:nth-child(2)':function(event){
         getNewImg();
@@ -21,9 +21,7 @@ Lungo.Events.init({
         for(i=0;i<$$('section#login form input').length;i++){
             $$('section#login form input')[i].value='';
         }
-//        while(Lungo.Router.History.current() != 'login'){
-            Lungo.Router.back();
-//        }
+        Lungo.Router.back();
     },
     'tap a#in':function(event){
         if(localStorage.getItem('fundationKey') === undefined || localStorage.getItem('fundationKey') == null){
@@ -51,8 +49,30 @@ Lungo.Events.init({
             return;
         }
 
+        $$('article#gallery .button').hide();
         Lungo.Router.section('main');
         loadImgs();
+    },
+    'tap section#main nav.groupbar a':function(event){
+        console.log('TAPPED: -->' + $$(event.target).attr('id'));
+        if ('edit' == $$(event.target).attr('id')){
+            $$('article#gallery a.button').style('display', 'inline-block');
+            $$('#edit').addClass('current');
+            $$('#gal').removeClass('current');
+            $$('article#gallery img').off('doubleTap');
+            $$('article#gallery img').on('tap', function(event){
+                console.log('SELECTED IMAGE');
+                $$(event.target).toggleClass('selected');
+            });
+        } else if ('gal' == $$(event.target).attr('id')){
+            console.log($$('article#gallery .button'));
+            $$('article#gallery a.button').hide();
+            $$('#gal').addClass('current');
+            $$('#edit').removeClass('current');
+            $$('article#gallery img').on('doubleTap', fullScreen);
+            $$('article#gallery img').off('tap');
+            $$('article#gallery img').removeClass('selected');
+        }
     },
     'tap article#sets #change':function(event){
         Lungo.Notification.confirm({
@@ -110,3 +130,8 @@ Lungo.Events.init({
         loadImgs();
     }
 });
+    
+function fullScreen(event){
+    console.log('DOUBLE TAP FOR FULL SCREEN');
+    
+}

@@ -37,6 +37,7 @@ function getNewImg() {
     var a = new MozActivity({ name: "pick", data: {type: ["image/jpeg", "image/png"]} });
     a.onerror = function (event) { console.log('ERROR on picking a photo'); };
     a.onsuccess = function (event) {
+        Lungo.Element.loading('#load',1);
         console.log('SUCCESS');  
         
         console.log('Returned blob: ' + a.result.blob);
@@ -46,11 +47,12 @@ function getNewImg() {
         fReader.onerror = function(event){console.log('ERROR loading a file');};
         fReader.onloadstart = function(event){console.log('START TO load a file');};
         fReader.onprogress = function(event){console.log('LOADING a file');};
-        fReader.onloadend = function(event){console.log('LOAD END EVENT..');};
+        fReader.onloadend = function(event){console.log('LOAD END EVENT..');Lungo.Element.loading('#load',0);};
         
         fReader.onload = function (event){
             console.log('');
             $$('article#gallery').append('<img class="shadow" src="' + event.target.result + '">');
+            $$('article#gallery img:last-child').on('doubleTap', fullScreen);
             console.log('');
             if (window.db === undefined){
                 openDB(event.target.result, storeNew);
@@ -79,11 +81,11 @@ function loadDBImages()
 {
     var transaction = db.transaction(["files"]);
     
-    Lungo.Element.loading('article#gallery',1);
+    Lungo.Element.loading('#load',1);
     var imgsReq = transaction.objectStore("files").openCursor();
     imgsReq.onerror = function(){
         console.log('Error getting IDB cursor');
-        Lungo.Element.loading('article#gallery',0);
+        Lungo.Element.loading('#load',0);
         Lungo.Notification.error(
                 "ERROR",              
                 "Error accessing stored files..sorry",
@@ -110,12 +112,14 @@ function loadDBImages()
                     var src='data:application/octet-stream;base64,';
 //                    $$('article#gallery').append('<img id="image-' + cursor.key + '" class="shadow" src="' + src.concat(sjcl.decrypt(window.key, event.target.result)) + '">');
                     $$('article#gallery').append('<img id="image-' + cursor.key + '" class="shadow" src="' + src.concat(sjcl.decrypt(localStorage.getItem('fundationKey'), event.target.result)) + '">');
+                    $$('article#gallery img:last-child').on('doubleTap', fullScreen);
                 }
                 cursor.continue();
                 
             } else {                
                 console.log("No more entries!");
-                Lungo.Element.loading('article#gallery',0);
+                
+                Lungo.Element.loading('#load',0);
             } 
         }
 }

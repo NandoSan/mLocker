@@ -8,3 +8,9 @@ article#gallery img{
     display:inline-block;
     width:25%;
 }
+
+.selected{
+    border-bottom-color:red;
+    border-style:solid;
+    border-width:medium;
+}
