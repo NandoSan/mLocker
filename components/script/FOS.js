@@ -61,15 +61,18 @@ function getNewImg() {
         
         fReader.onload = function (event){
             console.log('');
-            var newId = $$('article#gallery img:last-child').attr('id');
-            console.log('\nnewId = '+newId);
-            newId = newId.slice(6, newId.length);
-            console.log('\nnewId = '+newId);
-            newId++;
-            console.log('\nnewId = '+newId);
+            var newId;
+            if($$('article#gallery img:last-child').lenght > 0){
+                newId = $$('article#gallery img:last-child').attr('id');
+                newId = newId.slice(6, newId.length);
+                newId++;
+            } else {
+                newId=1;
+            }    
+
             $$('article#gallery').append('<img id="image-' + newId + '"class="shadow" src="' + event.target.result + '">');
             $$('article#gallery img:last-child').on('doubleTap', fullScreen);
-            console.log('\nINDICE LAST ELEMENT --> ' + $$('article#gallery img:last-child').attr('id'));
+            
             if (window.db === undefined){
                 openDB(event.target.result, storeNew);
             }

@@ -1,14 +1,14 @@
 {
   "name": "mLocker",
-  "description": "secure your phone",
+  "description": "Secure your phone",
   "launch_path": "/mlocker.html",
-  "type": "certified",
+  "type": "privileged",
   "icons": {
-    "128": "/imgs/lock-114.png"
+    "128": "/imgs/lock-128.png"
   },
   "developer": {
     "name": "nando",
-    "url": "www.agiledevers.com"
+    "url": "http://www.agiledevers.com"
   },
   "default_locale": "es",
   "installs_allowed_from": [
@@ -16,6 +16,9 @@
   ],
   "orientation": ["portrait"],
   "permissions": {
-      "device-storage:pictures":{ "access": "readwrite" }
+      "device-storage:pictures":{ 
+      "access": "readwrite",
+      "description": "mLocker will clone user's photo in a separate store location"
+      }
   }
 }
